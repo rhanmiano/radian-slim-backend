@@ -1,0 +1,16 @@
+# Default Charset
+AddDefaultCharset utf-8
+
+# Disable Directory Listing
+Options -Indexes
+
+<ifModule mod_rewrite.c>
+
+  # Base traffic on index.php
+  RewriteEngine on
+  RewriteRule ^$ public/ [L]
+  RewriteRule (.*) public/$1 [L]
+
+</IfModule>
+
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]

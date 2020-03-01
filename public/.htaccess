@@ -1,0 +1,15 @@
+# Default Charset
+AddDefaultCharset utf-8
+
+# Disable Directory Listing
+Options -Indexes
+
+<ifModule mod_rewrite.c>
+
+  # Base traffic on index.php
+  RewriteEngine on
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^ index.php [QSA,L]
+  
+</IfModule>
