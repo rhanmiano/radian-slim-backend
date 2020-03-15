@@ -52,26 +52,40 @@ class CryptoHelper {
     return $decoded;
     }
 
-    public function _cryptIds(array $args, $method) {
+    public function _cryptIds($args, $method, $cast_object = false) {
       
       $crypt = new CryptoHelper;
       if (!preg_match("/^_(?:en|de)crypt$/i", $method)) {
         return false;
       }  
-      
+
+      if (!is_array($args)) {
+        if (gettype($args) === 'object')
+          $args = (array) $args;
+        else
+          throw new Exception('Data must be of type object/array');
+      }
+
       if ($args && sizeof($args) > 0) {
         foreach($args as $key => $value) {
+          if (is_array($value)) {
+            $row_keys = array_keys($value);
+            $with_ids = preg_grep("/(?:^id$|_id$)/i", $row_keys);
+            
+            foreach($with_ids as $row_index) {
+              $args[$key][$row_index] = $crypt->$method($value[$row_index]);
+            }
+          } else {
+            $try_crypt = $crypt->$method($value);
 
-          $row_keys = array_keys($value);
-          $with_ids = preg_grep("/(?:^id$|_id$)/i", $row_keys);
-          
-          foreach($with_ids as $row_index) {
-            $args[$key][$row_index] = $crypt->$method($value[$row_index]);
+            if ($try_crypt) {
+              $args[$key] = $try_crypt;
+            }
           }
         }
       }
 
-      return $args;
+      return $cast_object ? (object) $args : $args;
 
     }
 

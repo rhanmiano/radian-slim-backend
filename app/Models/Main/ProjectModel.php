@@ -26,6 +26,63 @@ class ProjectModel extends BaseModel {
 
   }
 
+  public function getAllProjectTags() {
+
+    $result = ORM::for_table('project_tag')
+      ->select_many('project_tag.id', 'project_id', 'tag_id', array('tag_name' => 'name'))
+      ->join('tag', array('project_tag.tag_id', '=', 'tag.id'))
+      ->find_array();
+
+    return $result;
+
+  }
+
+  public function getProjectTagsById($id) {
+
+    $result = ORM::for_table('project_tag')
+      ->select_many('project_tag.id', 'project_id', 'tag_id', array('tag_name' => 'name'))
+      ->join('tag', array('project_tag.tag_id', '=', 'tag.id'))
+      ->where('project_id', $id)
+      ->find_array();
+
+    return $result;
+
+  }
+
+  public function insertProjectTag($args) {
+    $errors = [];
+
+    $project_tag = ORM::for_table('project_tag')->create();
+    $project_tag->set([
+      'project_id'   => $args->project_id,
+      'tag_id'       => $args->tag_id,
+      'date_created' => DateHelper::_now()
+    ]);
+
+    try {
+
+      $result['qry_status'] = $project_tag->save(); 
+
+    } catch (PDOException $e) {
+
+      $errors[] = $e->getMessages;
+
+    }
+
+    // If ever we need last inserted id
+    $id = ORM::get_db()->lastInsertId();
+
+    if (sizeof($errors) > 0) { // with errors
+    
+      $result['qry_status'] = false;
+      $result['errors'] = $errors;
+
+    }
+
+    return $result;
+
+  }
+
   public function insertProject($args) {
 
     $errors = [];
@@ -36,6 +93,7 @@ class ProjectModel extends BaseModel {
                 category_id,
                 name,
                 description,
+                short_description,
                 img_url,
                 project_url,
                 date_from,
@@ -47,6 +105,7 @@ class ProjectModel extends BaseModel {
                 :category_id,
                 :name,
                 :description,
+                :short_description,
                 :img_url,
                 :project_url,
                 :date_from,

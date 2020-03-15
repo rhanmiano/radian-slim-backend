@@ -9,6 +9,11 @@ class ProjectRoute {
     $pathCtrl = 'App\Controllers\Main\ProjectCtrl';
     
     $app->get(
+      '/test_projects',
+      $pathCtrl.':test'
+    );
+
+    $app->get(
       '/projects', 
       $pathCtrl.':all'
     );
@@ -16,6 +21,21 @@ class ProjectRoute {
     $app->get(
       '/project/{id}',
       $pathCtrl.':byId'
+    );
+
+    $app->get(
+      '/project_tags',
+      $pathCtrl.':allProjectTags'
+    );
+
+    $app->get(
+      '/project_tags/{id}',
+      $pathCtrl.':projectTagsById'
+    );
+
+    $app->post(
+      '/project_tag/create',
+      $pathCtrl.':projectTagCreate'
     );
 
     $app->post(

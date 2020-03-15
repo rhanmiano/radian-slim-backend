@@ -35,46 +35,43 @@ class Middleware {
               ->withheader('Content-Security-Policy', "default-src 'self';");
     });
 
-    // $this->app->add(new JwtAuthentication([
-    //   "attribute" => "jwt",
-    //   "path" => "/",
-    //   "algorithm" => getenv('JWT_ALGO'),
-    //   "secret" => getenv('JWT_SECRET'),
-    //   "error" => function ($request, $response, $arguments) {
-    //       return $response->withJson([
-    //           'success' => false,
-    //           'errors' => "Unauthorized access"
-    //       ], 401);
-    //   },
-    //   "rules" => [
-    //     new RequestPathRule([
-    //         "path" => "/",
-    //         "passthrough" => [
-    //           "/login",
-    //           "/projects",
-    //           "/categories",
-    //           "/tags"
-    //         ]
-    //     ]),
-    //     new RequestMethodRule([
-    //         "passthrough" => ["GET"]
-    //     ]),
-    //   ]
-    // ]));
+    /*$this->app->add(new JwtAuthentication([
+      "attribute" => "jwt",
+      "path" => "/",
+      "algorithm" => getenv('JWT_ALGO'),
+      "secret" => getenv('JWT_SECRET'),
+      "error" => function ($request, $response, $arguments) {
+          return $response->withJson([
+              'success' => false,
+              'errors' => "Unauthorized access"
+          ], 401);
+      },
+      "rules" => [
+        new RequestPathRule([
+            "path" => "/",
+            "passthrough" => [
+              "/login",
+              "/projects",
+              "/categories",
+              "/tags"
+            ]
+        ]),
+      ]
+    ]));*/
 
     /**
      * Throw 404 for unknown routes instead of 401 from Authentication
      */
-    // $this->app->add(function($request, $response, $next) {
+    $this->app->add(function($request, $response, $next) {
 
-    //   $route = $request->getAttribute("route");
+      $route = $request->getAttribute("route");
 
-    //   if (empty($route)) {
-    //     throw new NotFoundException($request, $response);
-    //   }
+      if (empty($route)) {
+        throw new NotFoundException($request, $response);
+      }
 
-    //   return $next($request, $response);
+      return $next($request, $response);
 
-    // });
+    });
   }
 }
