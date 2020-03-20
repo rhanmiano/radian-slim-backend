@@ -24,7 +24,7 @@ class EmailHelper {
         // SMTP::DEBUG_OFF = off (for production use)
         // SMTP::DEBUG_CLIENT = client messages
         // SMTP::DEBUG_SERVER = client and server messages
-        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $this->mail->SMTPDebug = SMTP::DEBUG_OFF;
 
         //Set the hostname of the mail server
         $this->mail->Host = 'smtp.gmail.com';
@@ -58,10 +58,7 @@ class EmailHelper {
 
         //Read an HTML message body from an external file, convert referenced images to embedded,
         //convert HTML into a basic plain-text alternative body
-        $this->mail->msgHTML('Hello from Slim PHP x PHP Mailer');
-
-        //Replace the plain text body with one created manually
-        $this->mail->AltBody = 'This is a plain-text message body';
+        $this->mail->msgHTML($args['message']);
     }
 
     public function get() {

@@ -79,3 +79,8 @@ if (!defined('PASSWORD_INVLD')) {
 if (!defined('LOGIN_SUCC')) {
   define('LOGIN_SUCC', 'You\'ve login successfully');
 }
+
+// Email
+if (!defined('EMAIL_NOT_SENT')) {
+  define('EMAIL_NOT_SENT', 'Email was not sent');
+}
