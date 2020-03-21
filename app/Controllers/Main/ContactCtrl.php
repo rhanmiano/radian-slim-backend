@@ -64,10 +64,10 @@ class ContactCtrl extends BaseCtrl{
         break;
     }
     $message = "<h3>" . $body_args->category ."</h3>" . 
-               "<p><strong>Nickname: </strong>" . $body_args->nickname . "</p><br />" . 
-               "<p><strong>Email: </strong>" . $body_args->email . "</p><br />" . 
-               "<p><strong>Contact No: </strong>" . $body_args->contactNo . "</p><br />" .
-               "<p><strong>Mesasge: </strong></p>" . '<br />' .
+               "<p><strong>Nickname: </strong>" . $body_args->nickname . "</p>" . 
+               "<p><strong>Email: </strong>" . $body_args->email . "</p>" . 
+               "<p><strong>Contact No: </strong>" . $body_args->contactNo . "</p>" .
+               "<p><strong>Mesasge: </strong></p>" .
                "<p>" . $body_args->message . "</p>";
     
     $this->res['dump'] = $message;
