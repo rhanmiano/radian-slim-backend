@@ -183,13 +183,13 @@ class ProjectCtrl extends BaseCtrl{
   public function create(Request $request, Response $response, $args) {
 
     $body_args = json_decode($request->getBody());
-
     // Validate input
     $validation = $this->validator->validate($body_args, [
       'category_id'       => v::notEmpty()->alnum(),
       'name'              => v::notEmpty()->alnum(),
       'description'       => v::notEmpty()->regex(UtilityHelper::_regex_keyboard_symbols()),
       'short_description' => v::notEmpty()->regex(UtilityHelper::_regex_keyboard_symbols()),
+      'tech'              => v::notEmpty()->alpha(),
       'img_url'           => v::optional(v::url()),
       'project_url'       => v::optional(v::url()),
       'date_from'         => v::notEmpty()->date(),
@@ -245,13 +245,15 @@ class ProjectCtrl extends BaseCtrl{
     $body_args = json_decode($request->getBody());
 
     $validation = $this->validator->validate($body_args, [
-      'category_id' => v::notEmpty()->alnum(),
-      'name'        => v::notEmpty()->alnum(),
-      'description' => v::notEmpty()->regex(UtilityHelper::_regex_keyboard_symbols()),
-      'img_url'     => v::optional(v::url()),
-      'project_url' => v::optional(v::url()),
-      'date_from'   => v::notEmpty()->date(),
-      'date_end'    => v::notEmpty()->date(),
+      'category_id'       => v::notEmpty()->alnum(),
+      'name'              => v::notEmpty()->alnum(),
+      'description'       => v::notEmpty()->regex(UtilityHelper::_regex_keyboard_symbols()),
+      'short_description' => v::notEmpty()->regex(UtilityHelper::_regex_keyboard_symbols()),
+      'tech'              => v::notEmpty()->alpha(),
+      'img_url'           => v::optional(v::url()),
+      'project_url'       => v::optional(v::url()),
+      'date_from'         => v::notEmpty()->date(),
+      'date_end'          => v::notEmpty()->date(),
     ]);
 
     if ($validation->failed()) {
