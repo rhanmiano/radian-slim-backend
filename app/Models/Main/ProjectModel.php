@@ -88,7 +88,7 @@ class ProjectModel extends BaseModel {
     $errors = [];
 
     // Sample of executing raw query
-    $qry1 = "INSERT INTO Project
+    $qry1 = "INSERT INTO project
               (
                 category_id,
                 name,
