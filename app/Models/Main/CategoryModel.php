@@ -10,14 +10,14 @@ class CategoryModel extends BaseModel {
 
   public function getAllCategories() {
 
-    $result = ORM::for_table('Category')->find_array();
+    $result = ORM::for_table('category')->find_array();
 
     return $result;
   }
 
   public function getCategoryById($id) {
 
-    $result = ORM::for_table('Category')
+    $result = ORM::for_table('category')
       ->where('id', $id)
       ->find_array();
 
@@ -64,10 +64,10 @@ class CategoryModel extends BaseModel {
   public function updateCategory($id, $args) {
     $errors = [];
 
-    $category = ORM::for_table('Category')
+    $category = ORM::for_table('category')
       ->find_one($id);
 
-    $category_data = ORM::for_table('Category')
+    $category_data = ORM::for_table('category')
       ->where('id', $id)
       ->find_array();
 
@@ -123,7 +123,7 @@ class CategoryModel extends BaseModel {
 
     $errors = [];
 
-    $category = ORM::for_table('Category')
+    $category = ORM::for_table('category')
       ->find_one($id);
 
     $category->set([
@@ -156,7 +156,7 @@ class CategoryModel extends BaseModel {
 
     $errors = [];
 
-    $category = ORM::for_table('Category')
+    $category = ORM::for_table('category')
       ->find_one($id);
 
     $category->set([
@@ -188,7 +188,7 @@ class CategoryModel extends BaseModel {
 
   public function deleteCategoryById($id) {
 
-    $category = ORM::for_table('Category')
+    $category = ORM::for_table('category')
       ->find_one($id);
   
     // if no category, category will be false

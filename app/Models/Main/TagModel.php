@@ -10,14 +10,14 @@ class TagModel extends BaseModel {
 
   public function getAllTags() {
 
-    $result = ORM::for_table('Tag')->find_array();
+    $result = ORM::for_table('tag')->find_array();
 
     return $result;
   }
 
   public function getTagById($id) {
 
-    $result = ORM::for_table('Tag')
+    $result = ORM::for_table('tag')
       ->where('id', $id)
       ->find_array();
 
@@ -65,10 +65,10 @@ class TagModel extends BaseModel {
 
     $errors = [];
 
-    $tag = ORM::for_table('Tag')
+    $tag = ORM::for_table('tag')
       ->find_one($id);
 
-    $tag_data = ORM::for_table('Tag')
+    $tag_data = ORM::for_table('tag')
       ->where('id', $id)
       ->find_array();
 
@@ -124,7 +124,7 @@ class TagModel extends BaseModel {
 
     $errors = [];
 
-    $tag = ORM::for_table('Tag')
+    $tag = ORM::for_table('tag')
       ->find_one($id);
 
     $tag->set([
@@ -157,7 +157,7 @@ class TagModel extends BaseModel {
 
     $errors = [];
 
-    $tag = ORM::for_table('Tag')
+    $tag = ORM::for_table('tag')
       ->find_one($id);
 
     $tag->set([
@@ -189,7 +189,7 @@ class TagModel extends BaseModel {
 
   public function deleteTagById($id) {
 
-    $tag = ORM::for_table('Tag')
+    $tag = ORM::for_table('tag')
       ->find_one($id);
 
     $result['qry_status'] = $tag ? $tag->delete() : $tag;
