@@ -8,7 +8,7 @@ use App\Helpers\CryptoHelper as Crypto;
 class BaseModel extends ORM{
 
     public function __construct() {
-        ORM::configure(\App\Config\Config::db());
+        ORM::configure(\App\App\Config\Config::db());
     }
 
 }

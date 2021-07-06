@@ -17,7 +17,7 @@ class BaseCtrl{
   public function __construct($app){
 
     $this->validator = $app->get('validator');
-    $this->crypto = new \App\Helpers\CryptoHelper;
+    $this->crypto = new \App\App\Helpers\CryptoHelper;
     
   }
 

@@ -9,7 +9,7 @@ class Init {
   private $app;
 
   public function __construct() {
-    $this->app = new \Slim\App(\App\Config\Config::slimSettings());
+    $this->app = new \Slim\App(\App\App\Config\Config::slimSettings());
     $this->dependencies();
     $this->middleware();
     $this->routes();
@@ -22,12 +22,12 @@ class Init {
 
 
   private function dependencies() {
-    return new \App\Dependencies($this->getApp());
+    return new \App\App\Dependencies($this->getApp());
   }
 
 
   private function middleware() {
-    return new \App\Middleware($this->getApp());
+    return new \App\App\Middleware($this->getApp());
   }
 
 
