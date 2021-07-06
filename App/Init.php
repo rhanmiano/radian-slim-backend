@@ -2,6 +2,7 @@
 
 namespace App;
 
+// some comments here
 require_once('Constants.php');
 
 class Init {

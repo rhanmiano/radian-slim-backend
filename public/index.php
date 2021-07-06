@@ -1,7 +1,6 @@
 <?php
 
 $rootPath = dirname(dirname(__FILE__));
-// var_dump($rootPath); die();
 require $rootPath  . '/vendor/autoload.php';
 
 if (file_exists($rootPath . '/.env')) {
