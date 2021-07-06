@@ -16,7 +16,7 @@ class Dependencies {
 
   private function inject() {
     $this->container['validator'] = function($c) {
-        return new \App\App\Validation\Validator;
+        return new \App\Validation\Validator;
     };
   }
 }
