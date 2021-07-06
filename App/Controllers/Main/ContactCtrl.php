@@ -74,7 +74,7 @@ class ContactCtrl extends BaseCtrl{
     $data = array(
       'from_email'      => $body_args->email,
       'from_email_name' => $body_args->nickname,
-      'to_email'        => 'hello@rhanmiano.me',
+      'to_email'        => 'rhanmiano29@gmail.com',
       'to_email_name'   => 'Jan Ray Miano',
       'subject'         => "Radian Contact Form",
       'message'         => $message
