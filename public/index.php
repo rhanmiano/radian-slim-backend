@@ -13,6 +13,6 @@ if (getenv('ENVIRONMENT') === false) {
   echo 'Application\'s environment configuration has not been set up properly.'; die();
 }
 
-$app = (new App\Init())->getApp();
+$app = (new \App\Init())->getApp();
 
 $app->run();
