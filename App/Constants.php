@@ -6,7 +6,7 @@ if (!defined('ROOT_PATH')) {
 }
 
 if (!defined('APP_PATH')) {
-  define('APP_PATH', ROOT_PATH . '/app');
+  define('APP_PATH', ROOT_PATH . '/App');
 }
 
 
