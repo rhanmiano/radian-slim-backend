@@ -12,6 +12,10 @@ if (getenv('ENVIRONMENT') === false) {
   echo 'Application\'s environment configuration has not been set up properly.'; die();
 }
 
+var_dump(getenv('EMAIL_SENDER'));
+var_dump(getenv('EMAIL_PASS'));
+die();
+
 $app = (new \App\Init())->getApp();
 
 $app->run();
