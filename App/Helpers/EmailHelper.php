@@ -24,7 +24,7 @@ class EmailHelper {
         // SMTP::DEBUG_OFF = off (for production use)
         // SMTP::DEBUG_CLIENT = client messages
         // SMTP::DEBUG_SERVER = client and server messages
-        $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+        $this->mail->SMTPDebug = SMTP::DEBUG_OFF;
 
         //Set the hostname of the mail server
         $this->mail->Host = 'smtp.gmail.com';
